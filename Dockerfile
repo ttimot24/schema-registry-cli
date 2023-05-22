@@ -16,6 +16,7 @@ COPY migrate-schemas.sh /tmp/
 
 RUN apk add --no-cache bash dumb-init curl jq \
  && chmod a+x /tmp/schema-registry-cli \
+ && chmod a+x /tmp/migrate-schemas.sh \
  && mv /tmp/schema-registry-cli /usr/bin \
  && mv /tmp/migrate-schemas.sh /usr/bin \
  && sync
