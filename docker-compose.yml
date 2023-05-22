@@ -6,8 +6,8 @@ services:
     image:  ttimot24/schema-registry-cli:0.1
     build: .
     environment:
-      SCHEMA_REGISTRY_URL: centraldev.commsignia.net:8081
+      SCHEMA_REGISTRY_URL: schema-registry:8081
       SCHEMA_TYPE: ".avsc"
-    command:  bash -c "for schema in /tmp/schemas/*$$SCHEMA_TYPE; do echo 'Found schemas:'; echo $$schema; cat $$schema | /usr/bin/schema-registry-cli subject schema create $$(basename $$schema $$SCHEMA_TYPE); done;"
+    command:  bash -c "/usr/bin/migrate-schemas.sh"
     volumes:
       - ./schemas:/tmp/schemas:ro

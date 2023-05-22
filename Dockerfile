@@ -12,10 +12,12 @@ LABEL org.label-schema.name="schema-registry-cli" \
       maintainer="dongjin@apache.org"
 
 COPY schema-registry-cli /tmp/
+COPY migrate-schemas.sh /tmp/
 
 RUN apk add --no-cache bash dumb-init curl jq \
  && chmod a+x /tmp/schema-registry-cli \
  && mv /tmp/schema-registry-cli /usr/bin \
+ && mv /tmp/migrate-schemas.sh /usr/bin \
  && sync
 
 # ENTRYPOINT [ "/usr/bin/dumb-init" ]
