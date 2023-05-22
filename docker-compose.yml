@@ -3,7 +3,7 @@ version: '3'
 services:
 
   schema-registry-cli:
-    image:  ttimot24/schema-registry-cli:0.1
+    image:  ttimot24/schema-registry-cli:0.2
     build: .
     environment:
       SCHEMA_REGISTRY_URL: schema-registry:8081
