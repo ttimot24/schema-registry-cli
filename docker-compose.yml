@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+
+  schema-registry-cli:
+    image:  ttimot24/schema-registry-cli:0.2
+    build: .
+    environment:
+      SCHEMA_REGISTRY_URL: centraldev.commsignia.net:8081
+      SCHEMA_REGISTRY_SUBJECT_NAME: "docker-cli"
+    command:  bash -c "for schema in /tmp/schemas/*.*; do echo 'Found schemas:'; echo $$schema; cat $schema | /usr/bin/schema-registry-cli subject schema create $$(basename $$schema .json); done;"
+    volumes:
+      - ./schemas:/tmp/schemas:ro

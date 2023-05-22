@@ -1,6 +1,6 @@
 FROM alpine:3.12
 
-ARG schema_registry_cli_version=0.1
+ARG schema_registry_cli_version=0.2
 
 LABEL org.label-schema.name="schema-registry-cli" \
       org.label-schema.description="Schema Registry command-line client" \
@@ -18,5 +18,5 @@ RUN apk add --no-cache bash dumb-init curl jq \
  && mv /tmp/schema-registry-cli /usr/bin \
  && sync
 
-ENTRYPOINT [ "/usr/bin/dumb-init" ]
+# ENTRYPOINT [ "/usr/bin/dumb-init" ]
 
