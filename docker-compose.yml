@@ -3,10 +3,11 @@ version: '3'
 services:
 
   schema-registry-cli:
-    image:  ttimot24/schema-registry-cli:0.2
+    image:  ttimot24/schema-registry-cli:0.1
     build: .
     environment:
-      SCHEMA_REGISTRY_URL: schema-registry:8081
-    command:  bash -c "for schema in /tmp/schemas/*.*; do echo 'Found schemas:'; echo $$schema; cat $schema | /usr/bin/schema-registry-cli subject schema create $$(basename $$schema .json); done;"
+      SCHEMA_REGISTRY_URL: centraldev.commsignia.net:8081
+      SCHEMA_TYPE: ".avsc"
+    command:  bash -c "for schema in /tmp/schemas/*$$SCHEMA_TYPE; do echo 'Found schemas:'; echo $$schema; cat $$schema | /usr/bin/schema-registry-cli subject schema create $$(basename $$schema $$SCHEMA_TYPE); done;"
     volumes:
       - ./schemas:/tmp/schemas:ro
